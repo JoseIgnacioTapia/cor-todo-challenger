@@ -1,7 +1,9 @@
+import Button from './Button';
+
 function Form() {
   return (
     <form className="w-full">
-      <div className="h-1/3 flex flex-col gap-3 sm:flex-row">
+      <div className="flex flex-col gap-3 sm:flex-row">
         <div className="flex-1">
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -16,9 +18,9 @@ function Form() {
             id="grid-state"
           >
             <option>Prioridad</option>
-            <option>New Mexico</option>
-            <option>Missouri</option>
-            <option>Texas</option>
+            <option>Alta</option>
+            <option>Media</option>
+            <option>Baja</option>
           </select>
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
             <svg
@@ -51,8 +53,18 @@ function Form() {
           </div>
         </div>
       </div>
-      <div></div>
-      <div></div>
+      <div>
+        <textarea
+          className="block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-4 py-4 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary"
+          id="exampleFormControlTextarea1"
+          rows={3}
+          placeholder="Descripción"
+          defaultValue={''}
+        />
+      </div>
+      <div className="mt-2 w-full">
+        <Button className="block mx-auto" type="submit" title="Crear tarea" />
+      </div>
     </form>
   );
 }
