@@ -1,19 +1,13 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { getTasksItems } from '../features/tasks/taskslice';
-import { useEffect } from 'react';
 import Form from '../components/Form';
+import FiltersSection from '../components/FiltersSection';
+import SectionCards from '../components/SectionCards';
 
 function Home() {
-  const tasks = useSelector(state => state.tasks);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getTasksItems());
-  }, [dispatch]);
-
   return (
     <div>
       <Form />
+      <FiltersSection />
+      <SectionCards />
     </div>
   );
 }
