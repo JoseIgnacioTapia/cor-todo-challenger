@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { getTasksItems } from '../features/tasks/taskslice';
 import { useEffect } from 'react';
+import Form from '../components/Form';
 
 function Home() {
   const tasks = useSelector(state => state.tasks);
@@ -10,7 +11,11 @@ function Home() {
     dispatch(getTasksItems());
   }, [dispatch]);
 
-  return <div>Home</div>;
+  return (
+    <div>
+      <Form />
+    </div>
+  );
 }
 
 export default Home;
