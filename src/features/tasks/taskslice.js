@@ -12,9 +12,8 @@ export const getTasksItems = createAsyncThunk(
     try {
       const resp = await fetch('http://localhost:3000/todos');
       const data = await resp.json();
-      console.log(data);
 
-      return data.todos;
+      return data;
     } catch (error) {
       console.log(error);
     }
@@ -32,7 +31,6 @@ export const taskSlice = createSlice({
       })
       .addCase(getTasksItems.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload);
         state.tasks = action.payload;
       })
       .addCase(getTasksItems.rejected, state => {

@@ -10,8 +10,6 @@ function Home() {
     dispatch(getTasksItems());
   }, [dispatch]);
 
-  console.log(tasks);
-
   return <div>Home</div>;
 }
 
