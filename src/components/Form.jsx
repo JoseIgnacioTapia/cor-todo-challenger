@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
 import Button from './Button';
-import { useEffect } from 'react';
 
 function Form({ title, description, priority, state, buttonTitle }) {
   return (
