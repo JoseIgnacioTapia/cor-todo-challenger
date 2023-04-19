@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import Button from './Button';
+import { useEffect } from 'react';
 
-function Form() {
+function Form({ title, description, priority, state, buttonTitle }) {
   return (
     <form className="w-full">
       <div className="flex flex-col gap-3 sm:flex-row">
@@ -9,6 +11,7 @@ function Form() {
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             id="grid-first-name"
             type="text"
+            value={title}
             placeholder="Título"
           />
         </div>
@@ -16,11 +19,12 @@ function Form() {
           <select
             className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="grid-state"
+            value={priority}
           >
-            <option>Prioridad</option>
-            <option>Alta</option>
-            <option>Media</option>
-            <option>Baja</option>
+            <option value="default">Prioridad</option>
+            <option value="Alta">Alta</option>
+            <option value="Media">Media</option>
+            <option value="Baja">Baja</option>
           </select>
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
             <svg
@@ -36,11 +40,12 @@ function Form() {
           <select
             className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="grid-state"
+            value={state}
           >
-            <option>Estado</option>
-            <option>Nueva</option>
-            <option>En proceso</option>
-            <option>Finalizada</option>
+            <option value="default">Estado</option>
+            <option value="Nueva">Nueva</option>
+            <option value="En proceso">En proceso</option>
+            <option value="Finalizada">Finalizada</option>
           </select>
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
             <svg
@@ -59,11 +64,15 @@ function Form() {
           id="exampleFormControlTextarea1"
           rows={3}
           placeholder="Descripción"
-          defaultValue={''}
+          value={description}
         />
       </div>
       <div className="mt-2 w-full">
-        <Button className="block mx-auto" type="submit" title="Crear tarea" />
+        <Button
+          className="block mx-auto"
+          type="submit"
+          buttonTitle={buttonTitle}
+        />
       </div>
     </form>
   );

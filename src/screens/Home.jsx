@@ -5,7 +5,7 @@ import SectionCards from '../components/SectionCards';
 function Home() {
   return (
     <div>
-      <Form />
+      <Form buttonTitle="Crear Tarea" />
       <FiltersSection />
       <SectionCards />
     </div>
