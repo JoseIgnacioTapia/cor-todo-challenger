@@ -1,8 +1,21 @@
-import { useState, useEffect } from 'react';
-
 import Button from './Button';
 
-function Form({ title, description, priority, state, buttonTitle }) {
+function Form(props) {
+  const {
+    formData,
+    onInputChange,
+    onSubmit,
+    buttonCreate,
+    title,
+    description,
+    priority,
+    state,
+    buttonUpdated,
+  } = props;
+
+  // console.log(title);
+  // console.log(formData.title);
+
   return (
     <form className="w-full">
       <div className="flex flex-col gap-3 sm:flex-row">
@@ -11,6 +24,7 @@ function Form({ title, description, priority, state, buttonTitle }) {
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             id="grid-first-name"
             type="text"
+            name="title"
             value={title}
             placeholder="Título"
           />
@@ -71,7 +85,7 @@ function Form({ title, description, priority, state, buttonTitle }) {
         <Button
           className="block mx-auto"
           type="submit"
-          buttonTitle={buttonTitle}
+          buttonTitle={buttonCreate ? buttonCreate : buttonUpdated}
         />
       </div>
     </form>

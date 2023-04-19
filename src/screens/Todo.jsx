@@ -7,24 +7,24 @@ import Form from '../components/Form';
 
 function Todo() {
   const { id } = useParams();
-
+  console.log(id);
   const task = useSelector(state => state.tasks.task);
   console.log(task);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getTaskItem(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
-  return (
-    <Form
-      title={task.title}
-      priority={task.priority}
-      state={task.state}
-      description={task.description}
-      buttonTitle="Actualizar"
-    />
-  );
+  const additionalProps = {
+    title: task.title,
+    priority: task.priority,
+    state: task.state,
+    description: task.description,
+    buttonUpdated: 'Actualizar',
+  };
+
+  return <Form {...additionalProps} />;
 }
 
 export default Todo;

@@ -2,8 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   tasks: [],
-  task: {},
+  task: { title: '', priority: '', state: '', description: '' },
   loading: false,
+  error: null,
+  validationsErrors: {},
 };
 
 // Get tasks
@@ -17,6 +19,7 @@ export const getTasksItems = createAsyncThunk(
       return data;
     } catch (error) {
       console.log(error);
+      throw error;
     }
   }
 );
@@ -28,10 +31,31 @@ export const getTaskItem = createAsyncThunk(
     try {
       const res = await fetch(`http://localhost:3000/todos/${id}`);
       const task = await res.json();
-
+      console.log(task);
       return task;
     } catch (error) {
       console.log(error);
+      throw error;
+    }
+  }
+);
+
+// Create a task
+export const createTaskItem = createAsyncThunk(
+  'tasks/createTaskItem',
+  async (data, thunkAPI) => {
+    try {
+      await fetch('http://localhost:3000/todos', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+        },
+      });
+    } catch (error) {
+      console.log(error);
+      throw error;
     }
   }
 );
@@ -49,8 +73,9 @@ export const taskSlice = createSlice({
         state.loading = false;
         state.tasks = action.payload;
       })
-      .addCase(getTasksItems.rejected, state => {
+      .addCase(getTasksItems.rejected, (state, action) => {
         state.loading = true;
+        state.error = action.error;
       })
       .addCase(getTaskItem.pending, state => {
         state.loading = true;
@@ -59,8 +84,19 @@ export const taskSlice = createSlice({
         state.loading = false;
         state.task = action.payload;
       })
-      .addCase(getTaskItem.rejected, state => {
+      .addCase(getTaskItem.rejected, (state, action) => {
         state.loading = false;
+        state.error = action.error;
+      })
+      .addCase(createTaskItem.pending, state => {
+        state.loading = true;
+      })
+      .addCase(createTaskItem.fulfilled, state => {
+        state.loading = false;
+      })
+      .addCase(createTaskItem.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error;
       });
   },
 });
