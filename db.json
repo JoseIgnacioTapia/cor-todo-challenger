@@ -2,10 +2,10 @@
   "todos": [
     {
       "id": 1,
-      "title": "Diseñar banner",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      "priority": "Baja",
-      "state": "Nueva"
+      "title": "Diseñar Mobile First",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "priority": "Alta",
+      "state": "En proceso"
     },
     {
       "id": 2,
@@ -34,6 +34,13 @@
       "state": "En proceso",
       "description": "React redux tailwind",
       "id": 5
+    },
+    {
+      "title": "test",
+      "priority": "Alta",
+      "state": "Nueva",
+      "description": "vvcvcvcvvc",
+      "id": 6
     }
   ]
 }

@@ -60,6 +60,28 @@ export const createTaskItem = createAsyncThunk(
   }
 );
 
+// Updates task
+export const updateTaskItem = createAsyncThunk(
+  'tasks/updateTaskItem',
+  async (data, thunkAPI) => {
+    try {
+      const res = await fetch(`http://localhost:3000/todos/${data.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      const updatedTask = await res.json();
+      console.log(updatedTask);
+      return updatedTask;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+);
+
 export const taskSlice = createSlice({
   name: 'tasks',
   initialState,
@@ -99,6 +121,17 @@ export const taskSlice = createSlice({
         state.loading = false;
       })
       .addCase(createTaskItem.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error;
+      })
+      .addCase(updateTaskItem.pending, state => {
+        state.loading = false;
+      })
+      .addCase(updateTaskItem.fulfilled, (state, action) => {
+        state.loading = false;
+        state.task = action.payload;
+      })
+      .addCase(updateTaskItem.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error;
       });
