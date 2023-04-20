@@ -2,8 +2,8 @@
   "todos": [
     {
       "id": 1,
-      "title": "Diseñar Mobile First",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "title": "Realizar el challenger Dos",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, ",
       "priority": "Alta",
       "state": "En proceso"
     },
@@ -62,6 +62,13 @@
       "state": "En proceso",
       "description": "xcxcxcxccx",
       "id": 9
+    },
+    {
+      "title": "prueba siete",
+      "priority": "Alta",
+      "state": "Nueva",
+      "description": "dscsdcds",
+      "id": 10
     }
   ]
 }

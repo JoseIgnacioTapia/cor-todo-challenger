@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { createTaskItem, setFormErrors } from '../features/tasks/taskslice';
+import { createTaskItem } from '../features/tasks/taskslice';
 
 import Form from '../components/Form';
 import FiltersSection from '../components/FiltersSection';

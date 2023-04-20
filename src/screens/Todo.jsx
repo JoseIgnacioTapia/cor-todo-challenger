@@ -2,8 +2,16 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTaskItem, updateTaskItem } from '../features/tasks/taskslice';
+import { validationForm, isEmpty } from '../utils/helpers';
 
 import Form from '../components/Form';
+
+const initialForm = {
+  title: '',
+  priority: '',
+  state: '',
+  description: '',
+};
 
 function Todo() {
   const { id } = useParams();
@@ -12,9 +20,8 @@ function Todo() {
 
   const dispatch = useDispatch();
 
+  const [data, setData] = useState(initialForm);
   const [formErrors, setFormErrors] = useState({});
-
-  const [data, setData] = useState({});
 
   useEffect(() => {
     dispatch(getTaskItem(id));
@@ -31,13 +38,24 @@ function Todo() {
       ...prevState,
       [name]: value,
     }));
+
+    const errors = validationForm(data);
+
+    setFormErrors(prevState => ({ ...prevState, ...errors }));
   };
   console.log(data);
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    dispatch(updateTaskItem(data));
+    const errors = validationForm(data);
+    setFormErrors(prevState => ({ ...prevState, ...errors }));
+
+    if (Object.values(formErrors).every(isEmpty)) {
+      dispatch(updateTaskItem(data));
+    }
+
+    setData(initialForm);
   };
 
   const additionalProps = {
@@ -47,8 +65,8 @@ function Todo() {
     description: data.description,
     onInputChange: handleInputChange,
     onSubmit: handleSubmit,
-    buttonUpdated: 'Actualizar',
     formErrors: formErrors,
+    buttonUpdated: 'Actualizar',
   };
 
   return <Form {...additionalProps} />;
