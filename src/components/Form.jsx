@@ -1,8 +1,8 @@
+import { useSelector } from 'react-redux';
 import Button from './Button';
 
 function Form(props) {
   const {
-    formData,
     onInputChange,
     onSubmit,
     buttonCreate,
@@ -11,10 +11,11 @@ function Form(props) {
     priority,
     state,
     buttonUpdated,
+    formData,
+    formErrors,
   } = props;
-
-  // console.log(title);
-  // console.log(formData.title);
+  // const formErrors = useSelector(state => state.tasks.formErrors);
+  console.log(formErrors);
 
   return (
     <form onSubmit={onSubmit} className="w-full">
@@ -88,6 +89,19 @@ function Form(props) {
           onChange={onInputChange}
         />
       </div>
+      {formErrors.title && (
+        <p className="text-xs text-red-500">{formErrors.title}</p>
+      )}
+      {formErrors.priority && (
+        <p className="text-xs text-red-500">{formErrors.priority}</p>
+      )}
+      {formErrors.state && (
+        <p className="text-xs text-red-500">{formErrors.state}</p>
+      )}
+      {formErrors.description && (
+        <p className="text-xs text-red-500">{formErrors.description}</p>
+      )}
+
       <div className="mt-2 w-full">
         <Button
           className="block mx-auto"

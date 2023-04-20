@@ -5,7 +5,7 @@ const initialState = {
   task: { title: '', priority: '', state: '', description: '' },
   loading: false,
   error: null,
-  validationsErrors: {},
+  formErrors: { title: '', description: '', priority: '', state: '' },
 };
 
 // Get tasks
@@ -45,7 +45,7 @@ export const createTaskItem = createAsyncThunk(
   'tasks/createTaskItem',
   async (data, thunkAPI) => {
     try {
-      await fetch('http://localhost:3000/todos', {
+      const res = await fetch('http://localhost:3000/todos', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
@@ -53,6 +53,8 @@ export const createTaskItem = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       });
+      const taskCreated = await res.json();
+      return taskCreated;
     } catch (error) {
       console.log(error);
       throw error;

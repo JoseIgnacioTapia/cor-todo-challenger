@@ -12,6 +12,8 @@ function Todo() {
 
   const dispatch = useDispatch();
 
+  const [formErrors, setFormErrors] = useState({});
+
   const [data, setData] = useState({});
 
   useEffect(() => {
@@ -46,6 +48,7 @@ function Todo() {
     onInputChange: handleInputChange,
     onSubmit: handleSubmit,
     buttonUpdated: 'Actualizar',
+    formErrors: formErrors,
   };
 
   return <Form {...additionalProps} />;
