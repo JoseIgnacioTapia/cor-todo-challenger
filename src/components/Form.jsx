@@ -17,15 +17,16 @@ function Form(props) {
   // console.log(formData.title);
 
   return (
-    <form className="w-full">
+    <form onSubmit={onSubmit} className="w-full">
       <div className="flex flex-col gap-3 sm:flex-row">
         <div className="flex-1">
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            id="grid-first-name"
+            id="name"
             type="text"
             name="title"
             value={title}
+            onChange={onInputChange}
             placeholder="Título"
           />
         </div>
@@ -33,7 +34,9 @@ function Form(props) {
           <select
             className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="grid-state"
+            name="priority"
             value={priority}
+            onChange={onInputChange}
           >
             <option value="default">Prioridad</option>
             <option value="Alta">Alta</option>
@@ -54,7 +57,9 @@ function Form(props) {
           <select
             className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="grid-state"
+            name="state"
             value={state}
+            onChange={onInputChange}
           >
             <option value="default">Estado</option>
             <option value="Nueva">Nueva</option>
@@ -78,7 +83,9 @@ function Form(props) {
           id="exampleFormControlTextarea1"
           rows={3}
           placeholder="Descripción"
+          name="description"
           value={description}
+          onChange={onInputChange}
         />
       </div>
       <div className="mt-2 w-full">

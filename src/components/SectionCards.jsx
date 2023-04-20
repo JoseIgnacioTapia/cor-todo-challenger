@@ -19,7 +19,7 @@ function SectionCards() {
         tasks.map(task => {
           return (
             <Link
-              className="inline-block "
+              className="inline-block w-full"
               to={`/todo/${task.id}`}
               key={task.id}
             >
