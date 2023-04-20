@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTaskItem } from '../features/tasks/taskslice';
 
@@ -12,15 +12,30 @@ function Todo() {
   console.log(task);
   const dispatch = useDispatch();
 
+  const [data, setData] = useState({});
+
   useEffect(() => {
     dispatch(getTaskItem(id));
   }, [dispatch, id]);
 
+  useEffect(() => {
+    setData(task);
+  }, [task]);
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setData(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   const additionalProps = {
-    title: task.title,
-    priority: task.priority,
-    state: task.state,
-    description: task.description,
+    title: data.title,
+    priority: data.priority,
+    state: data.state,
+    description: data.description,
+    onInputChange: handleChange,
     buttonUpdated: 'Actualizar',
   };
 

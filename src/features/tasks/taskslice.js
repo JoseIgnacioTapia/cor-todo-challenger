@@ -63,7 +63,11 @@ export const createTaskItem = createAsyncThunk(
 export const taskSlice = createSlice({
   name: 'tasks',
   initialState,
-  reducers: {},
+  reducers: {
+    setFormErrors: (state, action) => {
+      state.formErrors = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(getTasksItems.pending, state => {
@@ -100,5 +104,7 @@ export const taskSlice = createSlice({
       });
   },
 });
+
+export const { setFormErrors } = taskSlice.actions;
 
 export default taskSlice.reducer;
