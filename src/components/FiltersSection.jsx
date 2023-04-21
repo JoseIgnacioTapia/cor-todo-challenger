@@ -1,4 +1,23 @@
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setFilter } from '../features/tasks/taskslice';
+
 function FiltersSection() {
+  const dispatch = useDispatch();
+
+  const [priority, setPriority] = useState('default');
+  const [state, setState] = useState('default');
+
+  const handlePriorityChange = e => {
+    setPriority(e.target.value);
+    dispatch(setFilter({ priority: e.target.value, state }));
+  };
+
+  const handleStateChange = e => {
+    setState(e.target.value);
+    dispatch(setFilter({ priority, state: e.target.value }));
+  };
+
   return (
     <div>
       <h3 className="my-6 text-gray-700 text-lg font-bold">Filtrar por:</h3>
@@ -7,8 +26,10 @@ function FiltersSection() {
           <select
             className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="grid-state"
+            defaultValue="default"
+            onChange={handlePriorityChange}
           >
-            <option>Prioridad</option>
+            <option value="default">Prioridad</option>
             <option>Alta</option>
             <option>Media</option>
             <option>Baja</option>
@@ -27,8 +48,10 @@ function FiltersSection() {
           <select
             className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="grid-state"
+            defaultValue="default"
+            onChange={handleStateChange}
           >
-            <option>Estado</option>
+            <option value="default">Estado</option>
             <option>Nueva</option>
             <option>En proceso</option>
             <option>Finalizada</option>

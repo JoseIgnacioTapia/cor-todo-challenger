@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 function SectionCards() {
   const tasks = useSelector(state => state.tasks.tasks);
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,7 +34,7 @@ function SectionCards() {
           );
         })
       ) : (
-        <p>Loading</p>
+        <p>No existen tareas</p>
       )}
     </div>
   );

@@ -14,7 +14,6 @@ function Form(props) {
     formErrors,
   } = props;
   // const formErrors = useSelector(state => state.tasks.formErrors);
-  console.log(formErrors);
 
   return (
     <form onSubmit={onSubmit} className="w-full">

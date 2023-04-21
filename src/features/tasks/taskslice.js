@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   tasks: [],
+  allTasks: [],
   task: { title: '', priority: '', state: '', description: '' },
   loading: false,
   error: null,
-  formErrors: { title: '', description: '', priority: '', state: '' },
 };
 
 // Get tasks
@@ -31,7 +31,7 @@ export const getTaskItem = createAsyncThunk(
     try {
       const res = await fetch(`http://localhost:3000/todos/${id}`);
       const task = await res.json();
-      console.log(task);
+      
       return task;
     } catch (error) {
       console.log(error);
@@ -75,7 +75,7 @@ export const updateTaskItem = createAsyncThunk(
         body: JSON.stringify(data),
       });
       const updatedTask = await res.json();
-      console.log(updatedTask);
+      
       return updatedTask;
     } catch (error) {
       console.log(error);
@@ -93,7 +93,7 @@ export const deleteTaskItem = createAsyncThunk(
         method: 'DELETE',
       });
       const data = await res.json();
-      console.log(data);
+      
       return data;
     } catch (error) {
       console.log(error);
@@ -106,8 +106,25 @@ export const taskSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
-    setFormErrors: (state, action) => {
-      state.formErrors = action.payload;
+    setFilter: (state, action) => {
+      const allTasks = state.allTasks;
+      let tasksFiltered = allTasks;
+
+      if (action.payload.priority !== 'default') {
+        tasksFiltered = tasksFiltered.filter(
+          item => item.priority === action.payload.priority
+        );
+      }
+
+      tasksFiltered = tasksFiltered.length > 0 ? tasksFiltered : allTasks;
+      if (action.payload.state !== 'default') {
+        
+        tasksFiltered = tasksFiltered.filter(
+          item => item.state === action.payload.state
+        );
+      }
+
+      state.tasks = tasksFiltered;
     },
   },
   extraReducers: builder => {
@@ -118,6 +135,7 @@ export const taskSlice = createSlice({
       .addCase(getTasksItems.fulfilled, (state, action) => {
         state.loading = false;
         state.tasks = action.payload;
+        state.allTasks = action.payload;
       })
       .addCase(getTasksItems.rejected, (state, action) => {
         state.loading = true;
@@ -169,6 +187,6 @@ export const taskSlice = createSlice({
   },
 });
 
-export const { setFormErrors } = taskSlice.actions;
+export const { setFilter } = taskSlice.actions;
 
 export default taskSlice.reducer;

@@ -32,7 +32,6 @@ function Home() {
 
     setFormErrors(prevState => ({ ...prevState, ...errors }));
   };
-  console.log(formState);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -40,8 +39,7 @@ function Home() {
     const errors = validationForm(formState);
 
     setFormErrors(prevState => ({ ...prevState, ...errors }));
-    console.log(formErrors);
-    console.log(Object.values(formErrors).every(isEmpty));
+    
     if (Object.values(formErrors).every(isEmpty)) {
       dispatch(createTaskItem(formState));
     }
