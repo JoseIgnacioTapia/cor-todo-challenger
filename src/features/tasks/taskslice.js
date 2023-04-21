@@ -84,6 +84,24 @@ export const updateTaskItem = createAsyncThunk(
   }
 );
 
+// Delete Task
+export const deleteTaskItem = createAsyncThunk(
+  'tasks/deleteTaskItem',
+  async (id, thunkApi) => {
+    try {
+      const res = await fetch(`http://localhost:3000/todos/${id}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+);
+
 export const taskSlice = createSlice({
   name: 'tasks',
   initialState,
@@ -127,13 +145,24 @@ export const taskSlice = createSlice({
         state.error = action.error;
       })
       .addCase(updateTaskItem.pending, state => {
-        state.loading = false;
+        state.loading = true;
       })
       .addCase(updateTaskItem.fulfilled, (state, action) => {
         state.loading = false;
         state.task = action.payload;
       })
       .addCase(updateTaskItem.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error;
+      })
+      .addCase(deleteTaskItem.pending, state => {
+        state.loading = true;
+      })
+      .addCase(deleteTaskItem.fulfilled, (state, action) => {
+        state.loading = false;
+        state.tasks = action.payload;
+      })
+      .addCase(deleteTaskItem.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error;
       });

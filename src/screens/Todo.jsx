@@ -1,7 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTaskItem, updateTaskItem } from '../features/tasks/taskslice';
+import { useNavigate } from 'react-router-dom';
+import {
+  getTaskItem,
+  updateTaskItem,
+  deleteTaskItem,
+} from '../features/tasks/taskslice';
 import { validationForm, isEmpty } from '../utils/helpers';
 
 import Form from '../components/Form';
@@ -20,6 +25,8 @@ function Todo() {
   const task = useSelector(state => state.tasks.task);
 
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const [data, setData] = useState(initialForm);
   const [formErrors, setFormErrors] = useState({});
@@ -44,7 +51,6 @@ function Todo() {
 
     setFormErrors(prevState => ({ ...prevState, ...errors }));
   };
-  console.log(data);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -57,6 +63,13 @@ function Todo() {
     }
 
     setData(initialForm);
+  };
+
+  const handleDelete = () => {
+    console.log('Me ejecuto');
+    dispatch(deleteTaskItem(id));
+
+    navigate('/');
   };
 
   const additionalProps = {
@@ -73,7 +86,12 @@ function Todo() {
   return (
     <>
       <Form {...additionalProps} />;
-      <Button className="bg-red-600" type="button" buttonTitle="Eliminar" />
+      <Button
+        className="bg-red-600"
+        type="button"
+        buttonTitle="Eliminar"
+        onClick={handleDelete}
+      />
     </>
   );
 }

@@ -1,4 +1,4 @@
-function Button({ type, buttonTitle }) {
+function Button({ type, buttonTitle, onClick }) {
   let bgColor = '';
   if (type === 'submit') {
     bgColor = 'bg-yellow-500';
@@ -10,6 +10,7 @@ function Button({ type, buttonTitle }) {
     <button
       type={type}
       className={`block mx-auto ${bgColor}  hover:bg-gray-400 text-white font-bold py-2 px-4 rounded`}
+      onClick={onClick}
     >
       {buttonTitle}
     </button>

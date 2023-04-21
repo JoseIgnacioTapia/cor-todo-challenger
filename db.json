@@ -1,13 +1,6 @@
 {
   "todos": [
     {
-      "id": 1,
-      "title": "Realizar el challenger cuatro",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, ",
-      "priority": "Alta",
-      "state": "En proceso"
-    },
-    {
       "id": 2,
       "title": "Desarrollar tooltip Dos",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
@@ -34,55 +27,6 @@
       "state": "En proceso",
       "description": "React redux tailwind",
       "id": 5
-    },
-    {
-      "title": "test dos",
-      "priority": "Alta",
-      "state": "Nueva",
-      "description": "cdscdcdcdc",
-      "id": 6
-    },
-    {
-      "title": "prueba cinco",
-      "priority": "Alta",
-      "state": "Nueva",
-      "description": "sasas",
-      "id": 7
-    },
-    {
-      "title": "test tres",
-      "priority": "Media",
-      "state": "Nueva",
-      "description": "dsdsdsds",
-      "id": 8
-    },
-    {
-      "title": "prueba seis",
-      "priority": "Media",
-      "state": "En proceso",
-      "description": "xcxcxcxccx",
-      "id": 9
-    },
-    {
-      "title": "prueba siete",
-      "priority": "Alta",
-      "state": "Nueva",
-      "description": "dscsdcds",
-      "id": 10
-    },
-    {
-      "title": "Test cien",
-      "priority": "Alta",
-      "state": "Nueva",
-      "description": "Tests cien",
-      "id": 11
-    },
-    {
-      "title": "test ciento uno",
-      "priority": "Alta",
-      "state": "Nueva",
-      "description": "vfvfvf",
-      "id": 12
     }
   ]
 }
