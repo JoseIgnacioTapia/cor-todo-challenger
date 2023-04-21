@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { createTaskItem } from '../features/tasks/taskslice';
+
 import Form from '../components/Form';
 import FiltersSection from '../components/FiltersSection';
 import SectionCards from '../components/SectionCards';
+import { validationForm, isEmpty } from '../utils/helpers';
 
 const initialForm = {
   title: '',
@@ -14,6 +16,7 @@ const initialForm = {
 
 function Home() {
   const [formState, setFormState] = useState(initialForm);
+  const [formErrors, setFormErrors] = useState({});
 
   const dispatch = useDispatch();
 
@@ -24,21 +27,38 @@ function Home() {
       ...prevState,
       [name]: value,
     }));
+
+    const errors = validationForm(formState);
+
+    setFormErrors(prevState => ({ ...prevState, ...errors }));
   };
   console.log(formState);
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    dispatch(createTaskItem(formState));
+    const errors = validationForm(formState);
+
+    setFormErrors(prevState => ({ ...prevState, ...errors }));
+    console.log(formErrors);
+    console.log(Object.values(formErrors).every(isEmpty));
+    if (Object.values(formErrors).every(isEmpty)) {
+      dispatch(createTaskItem(formState));
+    }
+
+    setFormState(initialForm);
   };
 
   return (
     <div>
       <Form
-        formData={formState}
+        title={formState.title}
+        priority={formState.priority}
+        state={formState.state}
+        description={formState.description}
         onInputChange={handleInputChange}
         onSubmit={handleSubmit}
+        formErrors={formErrors}
         buttonCreate="Crear Tarea"
       />
       <FiltersSection />
