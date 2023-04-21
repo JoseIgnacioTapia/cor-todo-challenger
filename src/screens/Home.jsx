@@ -52,7 +52,10 @@ function Home() {
   return (
     <div>
       <Form
-        formData={formState}
+        title={formState.title}
+        priority={formState.priority}
+        state={formState.state}
+        description={formState.description}
         onInputChange={handleInputChange}
         onSubmit={handleSubmit}
         formErrors={formErrors}

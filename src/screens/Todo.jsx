@@ -5,6 +5,7 @@ import { getTaskItem, updateTaskItem } from '../features/tasks/taskslice';
 import { validationForm, isEmpty } from '../utils/helpers';
 
 import Form from '../components/Form';
+import Button from '../components/Button';
 
 const initialForm = {
   title: '',
@@ -69,7 +70,12 @@ function Todo() {
     buttonUpdated: 'Actualizar',
   };
 
-  return <Form {...additionalProps} />;
+  return (
+    <>
+      <Form {...additionalProps} />;
+      <Button className="bg-red-600" type="button" buttonTitle="Eliminar" />
+    </>
+  );
 }
 
 export default Todo;

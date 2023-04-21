@@ -11,7 +11,6 @@ function Form(props) {
     priority,
     state,
     buttonUpdated,
-    formData,
     formErrors,
   } = props;
   // const formErrors = useSelector(state => state.tasks.formErrors);
