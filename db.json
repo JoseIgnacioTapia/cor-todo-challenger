@@ -1,13 +1,6 @@
 {
   "todos": [
     {
-      "id": 2,
-      "title": "Desarrollar tooltip Dos",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      "priority": "Media",
-      "state": "En proceso"
-    },
-    {
       "id": 3,
       "title": "Diseñar banner",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",

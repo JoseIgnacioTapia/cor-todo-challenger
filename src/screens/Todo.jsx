@@ -66,7 +66,6 @@ function Todo() {
   };
 
   const handleDelete = () => {
-    console.log('Me ejecuto');
     dispatch(deleteTaskItem(id));
 
     navigate('/');
