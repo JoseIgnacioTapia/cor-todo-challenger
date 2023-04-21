@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 
 function SectionCards() {
   const tasks = useSelector(state => state.tasks.tasks);
-  
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getTasksItems());
-  }, [dispatch]);
+  }, [dispatch, tasks]);
 
   return (
     <div className="mt-6 flex justify-center flex-wrap">

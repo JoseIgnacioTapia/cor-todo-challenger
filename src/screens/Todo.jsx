@@ -63,6 +63,7 @@ function Todo() {
     }
 
     setData(initialForm);
+    navigate('/');
   };
 
   const handleDelete = () => {
